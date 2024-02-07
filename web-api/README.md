@@ -154,3 +154,12 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [AddMicrosoftIdentityWebApi]: https://learn.microsoft.com/dotnet/api/microsoft.identity.web.microsoftidentitywebapiauthenticationbuilderextensions.addmicrosoftidentitywebapi
 [ScopeAuthorizationRequirement]: https://learn.microsoft.com/dotnet/api/microsoft.identity.web.scopeauthorizationrequirement
 [WebApplicationBuilder]: https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder
+
+
+
+Request token using below link
+
+https://login.microsoftonline.com/9e8754b6-f9cd-4aed-974d-a0ec0f3ed703/oauth2/v2.0/authorize?client_id=03a3ace9-6609-45f7-8983-af855a490249&response_type=token&scope=api://03a3ace9-6609-45f7-8983-af855a490249/Test&response_mode=fragment&state=12345&nonce=678910
+
+Working:
+http://localhost:5010/weatherforecast

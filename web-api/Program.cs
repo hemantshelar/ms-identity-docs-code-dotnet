@@ -18,7 +18,21 @@ builder.Services.AddAuthorization(config =>
 // <ms_docref_enable_authz_capabilities>
 WebApplication app = builder.Build();
 app.UseAuthentication();
+
+app.Use(async (context, next) =>
+{
+    if (context.User.Identity?.IsAuthenticated == false)
+    {
+        context.Response.StatusCode = 401;
+        await context.Response.WriteAsync("Not logged in.");
+    }
+    else
+    {
+        await next();
+    }
+});
 app.UseAuthorization();
+
 // </ms_docref_enable_authz_capabilities>
 
 var weatherSummaries = new[]
@@ -27,7 +41,7 @@ var weatherSummaries = new[]
 };
 
 // <ms_docref_protect_endpoint>
-app.MapGet("/weatherforecast", [Authorize(Policy = "AuthZPolicy")] () =>
+app.MapGet("/weatherforecast", () =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
        new WeatherForecast
